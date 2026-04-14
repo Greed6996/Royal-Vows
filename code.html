@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Royal Vows - Premium Matrimony</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600;6..72,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container-low": "#f4f3f1",
+                        "primary-container": "#800000",
+                        "on-background": "#1a1c1a",
+                        "error": "#ba1a1a",
+                        "inverse-primary": "#ffb4a8",
+                        "surface-tint": "#b22b1d",
+                        "on-error-container": "#93000a",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "background": "#faf9f6",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-tertiary-fixed": "#2a1704",
+                        "on-surface": "#1a1c1a",
+                        "outline": "#8e706c",
+                        "primary": "#570000",
+                        "surface-container-highest": "#e3e2e0",
+                        "tertiary-fixed-dim": "#e3c0a0",
+                        "surface-container-high": "#e9e8e5",
+                        "tertiary": "#37230d",
+                        "on-surface-variant": "#5a413d",
+                        "surface": "#faf9f6",
+                        "on-tertiary-fixed-variant": "#5a422a",
+                        "inverse-on-surface": "#f2f1ee",
+                        "surface-container-lowest": "#ffffff",
+                        "outline-variant": "#e2bfb9",
+                        "primary-fixed": "#ffdad4",
+                        "on-tertiary-container": "#c2a183",
+                        "surface-bright": "#faf9f6",
+                        "on-primary-fixed": "#410000",
+                        "tertiary-fixed": "#ffdcbe",
+                        "secondary": "#705d00",
+                        "surface-variant": "#e3e2e0",
+                        "on-secondary-container": "#6e5c00",
+                        "on-primary-fixed-variant": "#8f0f07",
+                        "secondary-fixed-dim": "#e9c400",
+                        "secondary-fixed": "#ffe16d",
+                        "inverse-surface": "#2f312f",
+                        "tertiary-container": "#4f3821",
+                        "secondary-container": "#fcd400",
+                        "surface-container": "#efeeeb",
+                        "primary-fixed-dim": "#ffb4a8",
+                        "on-primary-container": "#ff8371",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed": "#221b00",
+                        "on-secondary-fixed-variant": "#544600",
+                        "surface-dim": "#dbdad7"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Manrope", "sans-serif"],
+                        "label": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"}
+                }
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Glassmorphism for modern heirloom look */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 40px rgba(87, 0, 0, 0.05); /* Tonal shadow based on primary */
+        }
+        
+        /* Subtle continuous breathing animation */
+        @keyframes breathe {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+        .animate-breathe {
+            animation: breathe 10s ease-in-out infinite;
+            transform-origin: center;
+        }
+
+        /* Float animation for decorative items */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 5s ease-in-out infinite;
+        }
+
+        /* 3D Premium hover lift */
+        .hover-lift {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 32px rgba(87, 0, 0, 0.08); /* Primary tint shadow */
+            z-index: 10;
+        }
+
+        /* Fancy Gradient Button transition */
+        .btn-gradient {
+            background-size: 200% auto;
+            transition: 0.5s;
+            background-image: linear-gradient(to right, #800000 0%, #a02020 51%, #800000 100%);
+        }
+        .btn-gradient:hover {
+            background-position: right center; /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+        }
+        
+        /* Micro interaction for arrows */
+        .group:hover .arrow-icon {
+            transform: translateX(4px);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-secondary-fixed selection:text-on-secondary-fixed overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#faf9f6]/90 backdrop-blur-lg border-b border-surface-container-high transition-all" id="header" data-aos="fade-down">
+    <nav class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+        <div class="flex items-center gap-6">
+            <!-- Inline SVG Logo Placeholder -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white group-hover:rotate-[360deg] transition-all duration-700 ease-in-out shadow-md">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
+                <span class="text-2xl font-bold text-[#800000] font-['Newsreader'] serif tracking-wide">Royal Vows</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-6 ml-6 pl-6 border-l border-outline-variant/30">
+                <a class="text-[#800000] font-bold border-b-2 border-[#FFD700] transition-colors duration-300" href="#">English</a>
+                <a class="text-stone-600 font-medium hover:text-[#800000] transition-colors duration-300" href="#">বাংলা</a>
+                <a class="text-stone-600 font-medium hover:text-[#800000] transition-colors duration-300" href="#">অসমীয়া</a>
+            </div>
+        </div>
+
+        <div class="hidden lg:flex items-center gap-6">
+            <div class="flex items-center gap-6 mr-4">
+                <a class="text-stone-600 font-medium hover:text-[#800000] transition-colors duration-300" href="#">Home</a>
+                <a class="text-stone-600 font-medium hover:text-[#800000] transition-colors duration-300" href="#how-it-works">How it Works</a>
+                <a class="text-stone-600 font-medium hover:text-[#800000] transition-colors duration-300" href="#contact">Contact Us</a>
+            </div>
+            <button class="btn-gradient text-white px-6 py-2.5 rounded-full font-bold text-sm tracking-wide transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5">
+                Create Free Profile
+            </button>
+        </div>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 text-on-surface hover:text-primary transition-colors focus:outline-none">
+            <span class="material-symbols-outlined text-3xl">menu</span>
+        </button>
+    </nav>
+    
+    <!-- Mobile Menu Container -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-surface-container-lowest border-t border-outline-variant/30 px-6 py-4 absolute w-full shadow-lg">
+        <div class="flex flex-col gap-4">
+            <a class="text-stone-600 font-medium hover:text-[#800000] py-2" href="#">Home</a>
+            <a class="text-stone-600 font-medium hover:text-[#800000] py-2" href="#how-it-works">How it Works</a>
+            <a class="text-stone-600 font-medium hover:text-[#800000] py-2" href="#contact">Contact Us</a>
+            <div class="flex gap-4 py-2 border-t border-outline-variant/30 mt-2">
+                <a class="text-[#800000] font-bold" href="#">EN</a>
+                <a class="text-stone-600" href="#">বাং</a>
+                <a class="text-stone-600" href="#">অস</a>
+            </div>
+            <button class="btn-gradient text-white px-6 py-3 rounded-full font-bold text-sm tracking-wide mt-2">
+                Create Free Profile
+            </button>
+        </div>
+    </div>
+</header>
+
+<main class="pt-24 lg:pt-32">
+<!-- Hero Section -->
+<section class="relative min-h-[min(100vh,800px)] flex items-center bg-surface py-12 lg:py-0 overflow-hidden">
+    <!-- Subtle Background Decoration -->
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-surface-container-low rounded-bl-[100px] -z-10 opacity-50"></div>
+    
+    <div class="container mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <!-- Text Content on Left -->
+        <div class="max-w-xl" data-aos="fade-right" data-aos-duration="1000">
+            <span class="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container font-bold text-xs uppercase tracking-widest mb-6 shadow-sm">
+                Established & Trusted
+            </span>
+            <h1 class="font-headline text-5xl md:text-6xl lg:text-7xl text-primary leading-tight mb-6">
+                Find Your Perfect Match. <br/><span class="italic font-light text-primary-container">Pay Only When It’s Fixed!</span>
+            </h1>
+            <p class="text-lg text-on-surface-variant mb-10 leading-relaxed max-w-lg">
+                No Registration Fee. No Advance Payment. Just honest matchmaking for those who value tradition and transparency.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                <button class="btn-gradient text-on-primary px-8 py-4 rounded-full font-bold text-lg shadow-lg flex items-center justify-center gap-3 group">
+                    Register for Free
+                    <span class="material-symbols-outlined arrow-icon transition-transform">arrow_forward</span>
+                </button>
+                <a href="#how-it-works" class="flex items-center justify-center bg-transparent text-primary px-8 py-4 rounded-full font-bold text-lg border-2 border-primary/20 hover:border-primary/60 hover:bg-surface-container-low transition-all">
+                    How it Works
+                </a>
+            </div>
+            
+            <div class="flex items-center gap-4 text-sm font-label text-on-surface-variant">
+                <div class="flex -space-x-3">
+                    <img class="w-10 h-10 rounded-full border-2 border-surface" src="https://i.pravatar.cc/100?img=1" alt="User">
+                    <img class="w-10 h-10 rounded-full border-2 border-surface" src="https://i.pravatar.cc/100?img=5" alt="User">
+                    <img class="w-10 h-10 rounded-full border-2 border-surface" src="https://i.pravatar.cc/100?img=8" alt="User">
+                </div>
+                <p>Join <strong class="text-primary">10k+</strong> families searching today.</p>
+            </div>
+        </div>
+
+        <!-- Prominent Hero Image on Right with Asymmetrical Design -->
+        <div class="relative w-full h-full min-h-[450px] lg:min-h-[650px] lg:mr-[-40px]" data-aos="fade-left" data-aos-duration="1200" data-aos-delay="200">
+            <div class="absolute inset-0 rounded-[2rem] lg:rounded-[3rem] overflow-hidden shadow-2xl animate-breathe">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10 mix-blend-multiply"></div>
+                <img alt="Groom adjusting bride's traditional head jewelry during a wedding ceremony" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uhmh9ZMXxwdnFLGdi1RF3V2NUYoFxZd5T4rpR7JbL8gzw7MdZc9MI8uxctgsMBIivgfka5ll4I2PkBdCTiXz-2YsxHQK_joT--2ROi9Z-8cicKlbA4TZJ2i3pCFbYKwqCZjMjxGrSPbVNThW3sm65Mw7LnB5s8qx5zOHOMRUTDHVru7NL1GX0cCk3ZIVb7N5F57nJ_5nqlCC7cdC80zlxLFuIHsatwpuef9qq4s0h3qfvrdSLfQw3jT1t1JWES3v5zDi3WxwyoZHH4"/>
+            </div>
+            
+            <!-- Heritage Glass Badge -->
+            <div class="absolute bottom-12 -left-6 md:-left-12 z-20 glass-card p-5 rounded-2xl flex items-center gap-4 animate-float">
+                <div class="w-12 h-12 rounded-full bg-secondary-container shadow-inner flex items-center justify-center text-secondary-fixed-variant">
+                    <span class="material-symbols-outlined text-2xl" data-icon="verified">verified</span>
+                </div>
+                <div>
+                    <p class="font-bold text-on-surface text-sm lg:text-base leading-tight">100% Verified Profiles</p>
+                    <p class="text-xs text-on-surface-variant font-label tracking-wide uppercase mt-1">Trusted Community</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Stats / Trust Bar -->
+<section class="bg-surface-container-low py-16 mt-12 border-y border-outline-variant/20">
+    <div class="container mx-auto px-6">
+        <div class="flex flex-wrap justify-around gap-8 text-center" id="counter-section">
+            <div data-aos="fade-up" data-aos-delay="0">
+                <p class="text-4xl lg:text-5xl font-headline font-bold text-primary mb-2">10k+</p>
+                <p class="text-xs md:text-sm font-label text-on-surface-variant uppercase tracking-[0.2em]">Active Profiles</p>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="100">
+                <p class="text-4xl lg:text-5xl font-headline font-bold text-primary mb-2">1,200+</p>
+                <p class="text-xs md:text-sm font-label text-on-surface-variant uppercase tracking-[0.2em]">Successful Marriages</p>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="200">
+                <p class="text-4xl lg:text-5xl font-headline font-bold text-primary mb-2">100%</p>
+                <p class="text-xs md:text-sm font-label text-on-surface-variant uppercase tracking-[0.2em]">Verified Accounts</p>
+            </div>
+            <div data-aos="fade-up" data-aos-delay="300">
+                <p class="text-4xl lg:text-5xl font-headline font-bold text-primary mb-2">₹0</p>
+                <p class="text-xs md:text-sm font-label text-on-surface-variant uppercase tracking-[0.2em]">Initial Investment</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section class="py-24 bg-surface" id="how-it-works" style="overflow: hidden;">
+    <div class="container mx-auto px-6">
+        <div class="text-center max-w-2xl mx-auto mb-20" data-aos="zoom-in" data-aos-duration="800">
+            <span class="text-secondary font-label uppercase text-xs tracking-[0.3em] mb-4 block">Process</span>
+            <h2 class="font-headline text-4xl md:text-5xl text-on-surface mb-6">Our Simple 3-Step Process</h2>
+            <p class="text-on-surface-variant text-lg leading-relaxed">We believe in results, not promises. Here is how we help you find your life partner with zero upfront risk.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-x-12 relative max-w-6xl mx-auto">
+            
+            <!-- Connection Line (Desktop) -->
+            <div class="hidden md:block absolute top-[50px] left-[15%] right-[15%] h-px bg-outline-variant/50 border border-dashed border-outline-variant/30 -z-10" data-aos="fade-in" data-aos-delay="500"></div>
+
+            <!-- Step 1 -->
+            <div class="hover-lift bg-surface-container-lowest p-8 rounded-[2rem] border border-outline-variant/20 relative flex flex-col items-center text-center group cursor-default shadow-sm" data-aos="fade-up" data-aos-delay="100">
+                <div class="w-24 h-24 rounded-[1.5rem] bg-surface-container-low shadow-inner flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-on-primary group-hover:rotate-12 transition-all duration-500">
+                    <span class="material-symbols-outlined text-4xl" data-icon="person_add">person_add</span>
+                </div>
+                <h3 class="font-headline text-2xl mb-4 font-bold">Create Free Profile</h3>
+                <p class="text-on-surface-variant leading-relaxed text-sm">Share your details and preferences. It takes less than 2 minutes to get started securely.</p>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="hover-lift bg-surface-container-lowest p-8 rounded-[2rem] border border-outline-variant/20 relative flex flex-col items-center text-center group cursor-default shadow-sm md:translate-y-8" data-aos="fade-up" data-aos-delay="300">
+                <div class="w-24 h-24 rounded-[1.5rem] bg-surface-container-low shadow-inner flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-on-primary group-hover:-rotate-12 transition-all duration-500 text-stone-700">
+                    <span class="material-symbols-outlined text-4xl" data-icon="search_heart">person_heart</span>
+                </div>
+                <h3 class="font-headline text-2xl mb-4 font-bold">We Find Matches</h3>
+                <p class="text-on-surface-variant leading-relaxed text-sm">Our expert matchmakers algorithmically and manually filter compatible partners based on your values.</p>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="hover-lift bg-surface-container-lowest p-8 rounded-[2rem] border border-outline-variant/20 relative flex flex-col items-center text-center group cursor-default shadow-sm" data-aos="fade-up" data-aos-delay="500">
+                <div class="absolute -top-3 -right-3 bg-secondary-container text-on-secondary-container text-xs font-bold px-3 py-1 rounded-full shadow-md z-10 animate-bounce">Zero Risk</div>
+                <div class="w-24 h-24 rounded-[1.5rem] bg-surface-container-low shadow-inner flex items-center justify-center mb-8 group-hover:bg-primary group-hover:text-on-primary group-hover:rotate-12 transition-all duration-500 text-stone-700">
+                    <span class="material-symbols-outlined text-4xl" data-icon="celebration">celebration</span>
+                </div>
+                <h3 class="font-headline text-2xl mb-2 font-bold">Pay Only on Success</h3>
+                <h4 class="text-secondary font-bold text-xs mb-3 uppercase tracking-wider">No Advance</h4>
+                <p class="text-on-surface-variant leading-relaxed text-sm">Our service fee is only applicable once the marriage is fixed and both families agree happily.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us - Asymmetric Bento Grid -->
+<section class="py-24 bg-surface-container-low relative overflow-hidden">
+    <div class="absolute top-1/2 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -z-10 translate-x-[-30%] translate-y-[-50%]"></div>
+    <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            
+            <div class="lg:col-span-5 flex flex-col justify-center" data-aos="fade-right">
+                <span class="text-secondary font-label uppercase text-xs tracking-[0.3em] mb-4 block">The Royal Vows Promise</span>
+                <h2 class="font-headline text-4xl md:text-5xl text-on-surface mb-8 leading-tight">Why We Are <br/>Different</h2>
+                <ul class="space-y-8">
+                    <li class="flex items-start gap-5 group">
+                        <div class="mt-1">
+                            <span class="material-symbols-outlined text-green-700 bg-green-100 rounded-full p-2 group-hover:scale-110 transition-transform shadow-sm" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg text-on-surface mb-1">100% Free to Join</p>
+                            <p class="text-sm text-on-surface-variant leading-relaxed">We skip the registration packages. There are zero hidden charges or costs to create a stunning profile.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-5 group">
+                        <div class="mt-1">
+                            <span class="material-symbols-outlined text-green-700 bg-green-100 rounded-full p-2 group-hover:scale-110 transition-transform shadow-sm" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">health_and_safety</span>
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg text-on-surface mb-1">Personal Matchmaker</p>
+                            <p class="text-sm text-on-surface-variant leading-relaxed">You're not left to filter alone. Our dedicated matchmaking experts guide you through every meaningful conversation.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start gap-5 group">
+                        <div class="mt-1">
+                            <span class="material-symbols-outlined text-green-700 bg-green-100 rounded-full p-2 group-hover:scale-110 transition-transform shadow-sm" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">enhanced_encryption</span>
+                        </div>
+                        <div>
+                            <p class="font-bold text-lg text-on-surface mb-1">Bank-Level Privacy</p>
+                            <p class="text-sm text-on-surface-variant leading-relaxed">Your family's data is highly encrypted. Profiles are exclusively shared with verified, seriously interested families.</p>
+                        </div>
+                    </li>
+                </ul>
+                <div class="mt-10">
+                    <button class="bg-surface text-primary px-8 py-4 rounded-full font-bold shadow-sm border border-outline-variant hover:border-primary/50 hover:bg-surface-container-highest transition-colors flex items-center w-max gap-2 group">
+                        Read Success Stories
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Bento Image Grid -->
+            <div class="lg:col-span-7 grid grid-cols-2 gap-4 lg:gap-6 relative">
+                <!-- Decorative Blur behind images -->
+                <div class="absolute inset-0 bg-secondary/10 blur-3xl rounded-full -z-10 translate-y-20 scale-90"></div>
+                
+                <div class="rounded-3xl overflow-hidden shadow-xl h-64 md:h-96 hover-lift" data-aos="fade-down" data-aos-delay="200">
+                    <img alt="Traditional Detail" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-110" data-alt="Close-up of traditional Indian wedding jewelry" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAteGWIoL0N4iExZMIJgbiu3fFwqGFXf1ohmOVijb_8uXdzDmEbyxBdztbhB6dUuDZ9jRdSDBrMLNTXCe6Q8BOHReRImsmI8C2HNItemLy1rhMqhMGc9FcyaUR1yyKp4NaTQDCCVWiHGseCMA5yxfPH1dJdrQ3Ko3CcF5Xzlm7_ytRfRTzA9ftDHTbSb-s3HXomnJfnVA2_QCZcXbZ8ZDLkbIR72pflNWUGpruR3bu97N26fNGxvYRgyyKksOOkDnLCjG4tyqPoKd3D"/>
+                </div>
+                <div class="rounded-3xl overflow-hidden shadow-xl h-64 md:h-96 translate-y-8 lg:translate-y-16 hover-lift" data-aos="fade-up" data-aos-delay="400">
+                    <img alt="Happy Couple" class="w-full h-full object-cover transition-transform duration-1000 hover:scale-110" data-alt="Happy traditional Indian couple" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7ozigLA0psxcUgeRgMEVnpXGpwXSWjk8Q6gkUL349H4T_poir3J6m18f-2H2f2ND-KSjfrQCBFHarC8530JKS2eBF3zofH5YrP2gzRMfA3AyfzEEIpZ5eIxGjBf56OTfmz8S4GP-ChJ12sOJPIboejXdx0ikOF7p_v2ExI9v-SEjCJSOBvFA3xWFDTnDJwGKsXiwqp4ttDib-TMeisN1gQum8swa_173hqpGMNYc0gTiO5wsCcKfrygTK1cjzPp4YmmhiTNIkLgxs"/>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="py-32 bg-surface relative" id="contact">
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="bg-surface-container-highest rounded-[3rem] p-8 md:p-20 border border-outline-variant/30 text-center max-w-5xl mx-auto shadow-2xl relative overflow-hidden group" data-aos="zoom-in-up" data-aos-duration="1000">
+            <!-- Background Glow inside card -->
+            <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-50 group-hover:opacity-100 transition-opacity duration-1000"></div>
+            
+            <div class="relative z-10">
+                <div class="w-20 h-20 bg-surface rounded-full shadow-sm mx-auto flex items-center justify-center mb-8 text-primary border border-outline-variant/20">
+                    <span class="material-symbols-outlined text-4xl">support_agent</span>
+                </div>
+                <h2 class="font-headline text-4xl md:text-5xl text-primary mb-6">Need Help Making Your Profile?</h2>
+                <p class="text-xl md:text-2xl mb-14 text-on-surface-variant font-light max-w-2xl mx-auto">Call our expert matchmakers directly or reach out on WhatsApp for instant assistance.</p>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
+                    <div class="flex flex-col items-center">
+                        <span class="text-stone-500 font-label uppercase text-xs tracking-[0.2em] mb-2">Direct Phone Support</span>
+                        <a class="text-3xl md:text-4xl font-bold text-on-surface hover:text-primary transition-colors hover:scale-105 inline-block" href="tel:+919876543210">+91 98765 43210</a>
+                    </div>
+                    
+                    <div class="h-px w-24 md:h-24 md:w-px bg-outline-variant/40"></div>
+                    
+                    <a href="#" class="bg-[#25D366] text-white px-10 py-5 rounded-full font-bold text-lg flex items-center gap-4 hover:bg-[#20bd5a] transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                        <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.771-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217s.231.001.332.005c.109.004.253-.041.397.303.145.346.494 1.201.536 1.287.043.087.072.188.014.303-.058.116-.087.188-.173.289l-.26.303c-.087.087-.177.18-.077.354.101.174.448.741.96 1.201.659.591 1.21.775 1.383.862.174.087.275.072.376-.045.101-.116.434-.506.549-.68.116-.174.231-.144.39-.087s1.011.477 1.184.563c.174.087.289.13.332.202.045.072.045.419-.1.824zM12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2z"></path></svg>
+                        Chat on WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</main>
+
+<!-- Footer -->
+<footer class="bg-stone-900 text-surface full-width pt-16 pb-8 border-t-[8px] border-primary">
+    <div class="px-8 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-10 border-b border-stone-800 pb-12 mb-8">
+            <div class="flex flex-col items-center md:items-start gap-4">
+                <a href="#" class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-stone-900">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                        </svg>
+                    </div>
+                    <span class="text-2xl font-bold text-surface font-headline tracking-wide">Royal Vows</span>
+                </a>
+                <p class="font-body text-sm text-stone-400 max-w-xs text-center md:text-left mt-2">Premium matchmaking services for families who value tradition, transparency, and trust.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 text-center md:text-left text-sm font-body">
+                <div class="flex flex-col gap-3">
+                    <h5 class="text-secondary font-bold uppercase tracking-wider mb-2">Legal</h5>
+                    <a class="text-stone-400 hover:text-white transition-colors" href="#">Privacy Policy</a>
+                    <a class="text-stone-400 hover:text-white transition-colors" href="#">Terms of Service</a>
+                    <a class="text-stone-400 hover:text-white transition-colors" href="#">Refund Policy</a>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <h5 class="text-secondary font-bold uppercase tracking-wider mb-2">Company</h5>
+                    <a class="text-stone-400 hover:text-white transition-colors" href="#">About Us</a>
+                    <a class="text-stone-400 hover:text-white transition-colors" href="#">Success Stories</a>
+                    <a class="text-stone-400 hover:text-white transition-colors" href="#">Office Location</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+            <p class="font-body text-sm text-stone-500">© 2024 Royal Vows Matrimony. All Rights Reserved.</p>
+            <div class="flex gap-4">
+                <a class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center text-stone-300 hover:bg-primary hover:text-white transition-all transform hover:scale-110" href="#">
+                    <span class="material-symbols-outlined text-xl" data-icon="facebook">public</span>
+                </a>
+                <a class="w-10 h-10 rounded-full bg-stone-800 flex items-center justify-center text-stone-300 hover:bg-primary hover:text-white transition-all transform hover:scale-110" href="#">
+                    <span class="material-symbols-outlined text-xl" data-icon="instagram">photo_camera</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- AOS Animation Library JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    // Initialize Animate On Scroll
+    AOS.init({
+        duration: 800,
+        easing: 'ease-out-cubic',
+        once: true,
+        offset: 50,
+        disable: window.innerWidth < 768 // Disable advanced animations on small mobile if needed, but keeping text fades is good
+    });
+
+    // Header scroll transparency effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+            header.classList.add('shadow-md', 'bg-[#faf9f6]/95');
+            header.classList.remove('bg-[#faf9f6]/90');
+        } else {
+            header.classList.remove('shadow-md', 'bg-[#faf9f6]/95');
+            header.classList.add('bg-[#faf9f6]/90');
+        }
+    });
+
+    // Mobile menu toggle logic
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+        // Simple slide down feel
+        if(!mobileMenu.classList.contains('hidden')){
+            mobileMenu.classList.add('animate-fadeIn');
+        }
+    });
+</script>
+</body>
+</html>
